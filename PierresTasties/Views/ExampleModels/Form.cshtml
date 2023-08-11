@@ -1,12 +1,12 @@
 @{
-    ViewData["Title"] = "ExampleModel Form";
+    ViewData["Title"] = "Flavor Form";
 }
 
-@model ExampleModel
+@model Flavor
 
 <h3>@ViewData["Title"]</h3>
 
-<form asp-action="@ViewData["FormAction"]" asp-controller="ExampleModels" method="post">
+<form asp-action="@ViewData["FormAction"]" asp-controller="Flavors" method="post">
     @Html.AntiForgeryToken()
 
     @* IF form is being used to edit, then attach the Id to model. *@

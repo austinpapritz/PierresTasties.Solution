@@ -20,7 +20,7 @@ namespace PierresTasties.Migrations
                 .HasAnnotation("ProductVersion", "6.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("PierresTasties.Models.ExampleModel", b =>
+            modelBuilder.Entity("PierresTasties.Models.Flavor", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -31,7 +31,7 @@ namespace PierresTasties.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ExampleModels");
+                    b.ToTable("Flavors");
                 });
 
             modelBuilder.Entity("PierresTasties.Models.Flavor", b =>

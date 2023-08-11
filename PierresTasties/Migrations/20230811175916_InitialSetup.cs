@@ -13,7 +13,7 @@ namespace PierresTasties.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "ExampleModels",
+                name: "Flavors",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -23,7 +23,7 @@ namespace PierresTasties.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ExampleModels", x => x.Id);
+                    table.PrimaryKey("PK_Flavors", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -91,7 +91,7 @@ namespace PierresTasties.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ExampleModels");
+                name: "Flavors");
 
             migrationBuilder.DropTable(
                 name: "FlavorTreats");

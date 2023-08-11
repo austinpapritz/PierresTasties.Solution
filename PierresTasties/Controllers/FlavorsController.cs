@@ -7,23 +7,23 @@ using System.Diagnostics;
 
 namespace PierresTasties.Controllers;
 
-public class ExampleModelsController : Controller
+public class FlavorsController : Controller
 {
     private readonly PierresTastiesContext _db;
-    public ExampleModelsController(PierresTastiesContext db)
+    public FlavorsController(PierresTastiesContext db)
     {
         _db = db;
     }
 
     public ActionResult Index()
     {
-        List<ExampleModel> model = _db.ExampleModels.ToList();
+        List<Flavor> model = _db.Flavors.ToList();
         return View(model);
     }
 
     public IActionResult Details(int id)
     {
-        ExampleModel model = _db.ExampleModels.FirstOrDefault(e => e.Id == id);
+        Flavor model = _db.Flavors.FirstOrDefault(f => f.FlavorId == id);
 
         if (model == null)
         {
@@ -37,48 +37,48 @@ public class ExampleModelsController : Controller
     {
         // Both Create and Edit routes use `Form.cshtml`
         ViewData["FormAction"] = "Create";
-        ViewData["SubmitButton"] = "Add ExampleModel";
+        ViewData["SubmitButton"] = "Add Flavor";
         return View("Form");
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Create([Bind("Name")] ExampleModel exampleModel)
+    public IActionResult Create([Bind("Name")] Flavor flavor)
     {
         if (ModelState.IsValid)
         {
-            _db.ExampleModels.Add(exampleModel);
+            _db.Flavors.Add(flavor);
             _db.SaveChanges();
 
             return RedirectToAction("Index");
         }
         ViewData["FormAction"] = "Create";
-        ViewData["SubmitButton"] = "Add ExampleModel";
+        ViewData["SubmitButton"] = "Add Flavor";
         return View("Form");
     }
 
     public IActionResult Edit(int id)
     {
-        ExampleModel exampleModelToBeEdited = _db.ExampleModels.FirstOrDefault(e => e.Id == id);
+        Flavor flavorToBeEdited = _db.Flavors.FirstOrDefault(f => f.FlavorId == id);
 
-        if (exampleModelToBeEdited == null)
+        if (flavorToBeEdited == null)
         {
             return NotFound();
         }
 
         // Both Create and Edit routes use `Form.cshtml`.
         ViewData["FormAction"] = "Edit";
-        ViewData["SubmitButton"] = "Update ExampleModel";
+        ViewData["SubmitButton"] = "Update Flavor";
 
-        return View("Form", exampleModelToBeEdited);
+        return View("Form", flavorToBeEdited);
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Edit(int id, [Bind("Id,Name")] ExampleModel exampleModel)
+    public IActionResult Edit(int id, [Bind("Id,Name")] Flavor flavor)
     {
         // Ensure id from form and url match.
-        if (id != exampleModel.Id)
+        if (id != flavor.FlavorId)
         {
             return NotFound();
         }
@@ -88,12 +88,12 @@ public class ExampleModelsController : Controller
             // Try to update changes, catch any ConcurrencyExceptions.
             try
             {
-                _db.Update(exampleModel);
+                _db.Update(flavor);
                 _db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ExampleModelExists(exampleModel.Id))
+                if (!FlavorExists(flavor.FlavorId))
                 {
                     return NotFound();
                 }
@@ -102,18 +102,18 @@ public class ExampleModelsController : Controller
                     throw;
                 }
             }
-            return RedirectToAction("details", "examplemodels", new { id = exampleModel.Id });
+            return RedirectToAction("details", "flavors", new { id = flavor.FlavorId });
         }
 
         // Otherwise reload form.
         ViewData["FormAction"] = "Edit";
-        ViewData["SubmitButton"] = "Update ExampleModel";
-        return RedirectToAction("edit", new { id = exampleModel.Id });
+        ViewData["SubmitButton"] = "Update Flavor";
+        return RedirectToAction("edit", new { id = flavor.FlavorId });
     }
 
     // Method to validate model in db.
-    private bool ExampleModelExists(int id)
+    private bool FlavorExists(int id)
     {
-        return _db.ExampleModels.Any(e => e.Id == id);
+        return _db.Flavors.Any(f => f.FlavorId == id);
     }
 }
