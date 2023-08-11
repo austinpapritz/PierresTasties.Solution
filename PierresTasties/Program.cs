@@ -1,7 +1,10 @@
 using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+
 using PierresTasties.Models;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -10,4 +10,11 @@ public class PierresTastiesContext : DbContext
     public DbSet<FlavorTreat> FlavorTreats { get; set; }
 
     public PierresTastiesContext(DbContextOptions options) : base(options) { }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<FlavorTreat>()
+            .HasKey(ft => new { ft.FlavorId, ft.TreatId });
+
+    }
+
 }
