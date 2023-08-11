@@ -10,8 +10,8 @@ using PierresTasties.Models;
 namespace PierresTasties.Migrations
 {
     [DbContext(typeof(PierresTastiesContext))]
-    [Migration("20230811175916_InitialSetup")]
-    partial class InitialSetup
+    [Migration("20230811192358_RemoveExampleModel")]
+    partial class RemoveExampleModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,20 +19,6 @@ namespace PierresTasties.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("PierresTasties.Models.Flavor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Flavors");
-                });
 
             modelBuilder.Entity("PierresTasties.Models.Flavor", b =>
                 {

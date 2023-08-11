@@ -75,7 +75,7 @@ public class FlavorsController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Edit(int id, [Bind("Id,Name")] Flavor flavor)
+    public IActionResult Edit(int id, [Bind("FlavorId,Name")] Flavor flavor)
     {
         // Ensure id from form and url match.
         if (id != flavor.FlavorId)

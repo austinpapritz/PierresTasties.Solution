@@ -20,20 +20,6 @@ namespace PierresTasties.Migrations
 
             modelBuilder.Entity("PierresTasties.Models.Flavor", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Flavors");
-                });
-
-            modelBuilder.Entity("PierresTasties.Models.Flavor", b =>
-                {
                     b.Property<int>("FlavorId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
