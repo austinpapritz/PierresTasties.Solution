@@ -38,7 +38,7 @@ public class AccountController : Controller
         }
         else
         {
-            ApplicationUser user = new ApplicationUser { UserName = model.Email };
+            ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email };
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
@@ -68,7 +68,7 @@ public class AccountController : Controller
     public async Task<ActionResult> RegisterAdmin(RegisterViewModel model)
     {
         // Registration code...
-        var user = new ApplicationUser { UserName = model.Email };
+        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
         var result = await _userManager.CreateAsync(user, model.Password);
         if (result.Succeeded)
         {
