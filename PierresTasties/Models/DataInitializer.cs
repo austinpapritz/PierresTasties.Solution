@@ -4,25 +4,25 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace PierresTasties.Models
+namespace PierresTasties.Models;
+
+public class DataInitializer
 {
-    public class DataInitializer
+    public static void InitializeData(WebApplication app)
     {
-        public static void InitializeData(WebApplication app)
+        using (var scope = app.Services.CreateScope())
         {
-            using (var scope = app.Services.CreateScope())
+            var context = scope.ServiceProvider.GetRequiredService<PierresTastiesContext>();
+            context.Database.Migrate();
+
+            // If there's already stuff in the database, don't run.
+            if (context.Flavors.Any())
             {
-                var context = scope.ServiceProvider.GetRequiredService<PierresTastiesContext>();
-                context.Database.Migrate();
+                return;
+            }
 
-                // If there's already stuff in the database, don't run.
-                if (context.Flavors.Any())
-                {
-                    return;
-                }
-
-                // Define Flavors
-                var flavors = new List<Flavor>
+            // Define Flavors
+            var flavors = new List<Flavor>
                 {
                     new Flavor { Name = "Sweet" },
                     new Flavor { Name = "Savory" },
@@ -30,12 +30,12 @@ namespace PierresTasties.Models
                     new Flavor { Name = "Spicy" }
                 };
 
-                // Save Flavors to the database
-                context.Flavors.AddRange(flavors);
-                context.SaveChanges();
+            // Save Flavors to the database
+            context.Flavors.AddRange(flavors);
+            context.SaveChanges();
 
-                // Define Treats with combinations of flavors
-                var treatNames = new List<string>
+            // Define Treats with combinations of flavors
+            var treatNames = new List<string>
                 {
                     "Sweet Raspberry Tart", "Sweet Lemon Cookies", "Sweet Almond Cake", "Sweet Chocolate Muffins",
                     "Savory Cheese Croissant", "Savory Olive Bread", "Savory Tomato Quiche", "Savory Bacon Scones",
@@ -43,20 +43,20 @@ namespace PierresTasties.Models
                     "Spicy Ginger Cookies", "Spicy Chili Brownies", "Spicy Cinnamon Rolls", "Spicy Cayenne Chocolate Cake"
                 };
 
-                // Create FlavorTreat relationships
-                for (int i = 0; i < flavors.Count; i++)
+            // Create FlavorTreat relationships
+            for (int i = 0; i < flavors.Count; i++)
+            {
+                for (int j = 0; j < 4; j++)
                 {
-                    for (int j = 0; j < 4; j++)
-                    {
-                        var treat = new Treat { Name = treatNames[i * 4 + j] };
-                        var flavorTreat = new FlavorTreat { Flavor = flavors[i], Treat = treat };
-                        context.FlavorTreats.Add(flavorTreat);
-                    }
+                    var treat = new Treat { Name = treatNames[i * 4 + j] };
+                    var flavorTreat = new FlavorTreat { Flavor = flavors[i], Treat = treat };
+                    context.FlavorTreats.Add(flavorTreat);
                 }
-
-                // Save changes to the database
-                context.SaveChanges();
             }
+
+            // Save changes to the database
+            context.SaveChanges();
         }
     }
+
 }

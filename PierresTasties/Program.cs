@@ -39,10 +39,38 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
           .AddDefaultTokenProviders()
           .AddRoles<IdentityRole>();
 
+// DEVELOPMENT ONLY removes pw requirements to make account creation easier for development.
+// IN PRODUCTION UNCOMMENT PW annotation in `RegisterViewModel.cs`.
+builder.Services.Configure<IdentityOptions>(options =>
+{
+  options.Password.RequireDigit = false;
+  options.Password.RequireLowercase = false;
+  options.Password.RequireNonAlphanumeric = false;
+  options.Password.RequireUppercase = false;
+  options.Password.RequiredLength = 0;
+  options.Password.RequiredUniqueChars = 0;
+});
+
+// Define auth tags for controller routes.
+// Example tags below:
+// [Authorize(Policy = "RequireAdministratorRole")]
+// [Authorize(Roles = "Admin,Patron")]
+builder.Services.AddAuthorization(options =>
+{
+  options.AddPolicy("RequireAdministratorRole",
+    policy => policy.RequireRole("Admin"));
+  options.AddPolicy("RequirePatronRole",
+    policy => policy.RequireRole("Patron"));
+});
+
+
 var app = builder.Build();
 
 // FOR DEVELOPMENT ONLY.
 DataInitializer.InitializeData(app);
+
+// Initialize auth roles.
+RolesInitializer.InitializeRoles(app);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -63,8 +91,6 @@ app.UseAuthorization();
 
 // AspNetCoreRateLimit.
 app.UseIpRateLimiting();
-
-app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
