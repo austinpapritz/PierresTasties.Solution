@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "Flavor Page";
+    ViewData["Title"] = "Treat Page";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -10,8 +10,8 @@
 }
 
 <ul>
-    @foreach (Flavor flavor in Model)
+    @foreach (Treat treat in Model)
     {
-			<li>@flavor.Name</li>
+			<li>@treat.Name</li>
     }
 </ul>
