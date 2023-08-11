@@ -111,6 +111,25 @@ public class TreatsController : Controller
         return RedirectToAction("edit", new { id = treat.TreatId });
     }
 
+    // Handled by site.js.
+    [HttpPost]
+    public IActionResult Delete(int id)
+    {
+        Treat treatToBeDeleted = _db.Treats.FirstOrDefault(e => e.TreatId == id);
+
+        if (treatToBeDeleted == null)
+        {
+            return NotFound();
+        }
+
+        _db.Treats.Remove(treatToBeDeleted);
+        _db.SaveChanges();
+
+        // Return HTTP 200 OK to AJAX request, signalling successful deletion.
+        return Ok();
+    }
+
+
     // Method to validate model in db.
     private bool TreatExists(int id)
     {

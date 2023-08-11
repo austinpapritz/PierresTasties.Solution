@@ -111,6 +111,25 @@ public class FlavorsController : Controller
         return RedirectToAction("edit", new { id = flavor.FlavorId });
     }
 
+    // Handled by site.js.
+    [HttpPost]
+    public IActionResult Delete(int id)
+    {
+        Flavor flavorToBeDeleted = _db.Flavors.FirstOrDefault(e => e.FlavorId == id);
+
+        if (flavorToBeDeleted == null)
+        {
+            return NotFound();
+        }
+
+        _db.Flavors.Remove(flavorToBeDeleted);
+        _db.SaveChanges();
+
+        // Return HTTP 200 OK to AJAX request, signalling successful deletion.
+        return Ok();
+    }
+
+
     // Method to validate model in db.
     private bool FlavorExists(int id)
     {
