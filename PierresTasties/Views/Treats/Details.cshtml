@@ -2,5 +2,9 @@
     ViewData["Title"] = $"{@Model.Name} Details";
 }
 
-<h1>Details for @Model.Name</h1>
+<h1>
+    Details for @Model.Name
+    <a href="/treats/edit/@Model.TreatsId">✏️</a>
+    <a href="#" data-id="@Model.TreatsId" data-url="/treats/delete/@Model.TreatsId" class="delete-link">❌</a>
+</h1>
 

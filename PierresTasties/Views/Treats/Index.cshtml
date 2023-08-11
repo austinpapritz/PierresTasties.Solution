@@ -12,6 +12,12 @@
 <ul>
     @foreach (Treat treat in Model)
     {
-			<li>@treat.Name</li>
+			<li>
+                @treat.Name
+                <a href="/treats/details/@treat.TreatId">🔎</a>
+                <a href="/treats/edit/@treat.TreatId">✏️</a>
+                <a href="#" data-id="@treat.TreatId" data-url="/treats/delete/@treat.TreatId" class="delete-link">❌</a>
+
+            </li>
     }
 </ul>
