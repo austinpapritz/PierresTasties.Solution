@@ -9,7 +9,7 @@ namespace PierresTasties.Models;
 
 public class RolesInitializer
 {
-    public static void InitializeRoles(WebApplication app)
+    public static async Task InitializeRoles(WebApplication app)
     {
         // Adding roles
         using (var scope = app.Services.CreateScope())
@@ -19,10 +19,10 @@ public class RolesInitializer
             string[] roleNames = { "Admin", "Patron" };
             foreach (var roleName in roleNames)
             {
-                var roleExist = roleManager.RoleExistsAsync(roleName).Result;
+                var roleExist = await roleManager.RoleExistsAsync(roleName);
                 if (!roleExist)
                 {
-                    roleManager.CreateAsync(new IdentityRole(roleName)).Wait();
+                    await roleManager.CreateAsync(new IdentityRole(roleName));
                 }
             }
         }

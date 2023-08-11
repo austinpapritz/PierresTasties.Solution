@@ -1,9 +1,8 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering; // Putting SelectList in ViewBag
 using Microsoft.EntityFrameworkCore;
 using PierresTasties.Models;
-using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace PierresTasties.Controllers;
 
@@ -21,6 +20,7 @@ public class TreatsController : Controller
         return View(model);
     }
 
+    [Authorize(Roles = "Admin,Patron")]
     public IActionResult Details(int id)
     {
         Treat model = _db.Treats.FirstOrDefault(t => t.TreatId == id);
@@ -33,6 +33,7 @@ public class TreatsController : Controller
         return View(model);
     }
 
+    [Authorize(Roles = "Admin")]
     public IActionResult Create()
     {
         // Both Create and Edit routes use `Form.cshtml`
@@ -41,6 +42,7 @@ public class TreatsController : Controller
         return View("Form");
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Create([Bind("Name")] Treat Treat)
