@@ -20,7 +20,6 @@ public class TreatsController : Controller
         return View(model);
     }
 
-    [Authorize(Roles = "Admin,Patron")]
     public IActionResult Details(int id)
     {
         Treat model = _db.Treats.FirstOrDefault(t => t.TreatId == id);
@@ -59,6 +58,7 @@ public class TreatsController : Controller
         return View("Form");
     }
 
+    [Authorize(Roles = "Admin")]
     public IActionResult Edit(int id)
     {
         Treat treatToBeEdited = _db.Treats.FirstOrDefault(t => t.TreatId == id);
@@ -75,6 +75,7 @@ public class TreatsController : Controller
         return View("Form", treatToBeEdited);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Edit(int id, [Bind("TreatId,Name")] Treat treat)
@@ -114,6 +115,7 @@ public class TreatsController : Controller
     }
 
     // Handled by site.js.
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public IActionResult Delete(int id)
     {

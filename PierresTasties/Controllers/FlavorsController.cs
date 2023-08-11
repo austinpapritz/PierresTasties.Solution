@@ -20,7 +20,6 @@ public class FlavorsController : Controller
         return View(model);
     }
 
-    [Authorize(Roles = "Admin,Patron")]
     public IActionResult Details(int id)
     {
         Flavor model = _db.Flavors.FirstOrDefault(f => f.FlavorId == id);
@@ -59,6 +58,7 @@ public class FlavorsController : Controller
         return View("Form");
     }
 
+    [Authorize(Roles = "Admin")]
     public IActionResult Edit(int id)
     {
         Flavor flavorToBeEdited = _db.Flavors.FirstOrDefault(f => f.FlavorId == id);
@@ -75,6 +75,7 @@ public class FlavorsController : Controller
         return View("Form", flavorToBeEdited);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Edit(int id, [Bind("FlavorId,Name")] Flavor flavor)
@@ -114,6 +115,7 @@ public class FlavorsController : Controller
     }
 
     // Handled by site.js.
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public IActionResult Delete(int id)
     {
