@@ -17,4 +17,4 @@ Authorize Admin to create a token code
 Authorize Patron to create a token by redeeming a token code.
 
 Admin can CUD flavors and treats
-Patron can create tokens (by redeeming it), user can add a vote token to a treat, or edit their vote token
+Patron can create tokens (by redeeming it), user can add a vote token to a treat, or edit their vote token, see their votes in profile page
