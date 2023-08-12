@@ -8,6 +8,9 @@ public class PierresTastiesContext : IdentityDbContext<ApplicationUser>
     public DbSet<Flavor> Flavors { get; set; }
     public DbSet<Treat> Treats { get; set; }
     public DbSet<FlavorTreat> FlavorTreats { get; set; }
+    public DbSet<Vote> Votes { get; set; }
+
+
 
     public PierresTastiesContext(DbContextOptions options) : base(options) { }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
