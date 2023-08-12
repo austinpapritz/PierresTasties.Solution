@@ -1,3 +1,26 @@
 ﻿@{
     Layout = "_Layout";
+
+    ////
+    // This allows every View to have elements that only an admin can see.
+    // See example below:
+    //      @if ((bool)ViewData["IsAdmin"])
+    //      {
+    //          <p>Only an admin can see this element.</p>
+    //      }
+    ////
+    @inject UserManager<ApplicationUser> UserManager
+    // Assume user is not an admin.
+    bool isAdmin = false;
+    // Check if user is an admin; if so, assign `isAdmin = true`.
+    if (User.Identity.IsAuthenticated)
+    {
+        var user = await UserManager.GetUserAsync(User);
+        if (user != null && await UserManager.IsInRoleAsync(user, "Admin"))
+        {
+            isAdmin = true;
+        }
+    }
+    // Make `isAdmin` available to all Views in the `ViewData`.
+    ViewData["IsAdmin"] = isAdmin;
 }

@@ -15,8 +15,12 @@
 			<li>
                 @flavor.Name
                 <a href="/flavors/details/@flavor.FlavorId">🔎</a>
-                <a href="/flavors/edit/@flavor.FlavorId">✏️</a>
-                <a href="#" data-id="@flavor.FlavorId" data-url="/flavors/delete/@flavor.FlavorId" class="delete-link">❌</a>
+                
+                @if ((bool)ViewData["IsAdmin"])
+                {
+                    <a href="/flavors/edit/@flavor.FlavorId">✏️</a>
+                    <a href="#" data-id="@flavor.FlavorId" data-url="/flavors/delete/@flavor.FlavorId" class="delete-link">❌</a>
+                }
             </li>
     }
 </ul>

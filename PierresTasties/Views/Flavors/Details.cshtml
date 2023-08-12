@@ -1,10 +1,15 @@
 @{
-    ViewData["Title"] = $"{@Model.Name} Details";
+    ViewData["Title"] = $"{@Model.Name} Details";  
 }
 
 <h1>
     Details for @Model.Name
-    <a href="/flavors/edit/@Model.FlavorId">✏️</a>
-    <a href="#" data-id="@Model.FlavorId" data-url="/flavors/delete/@Model.FlavorId" class="delete-link">❌</a>
+    
+    @* Only display these if user is an admin *@
+    @if ((bool)ViewData["IsAdmin"])
+    {
+        <a href="/flavors/edit/@Model.FlavorId">✏️</a>
+        <a href="#" data-id="@Model.FlavorId" data-url="/flavors/delete/@Model.FlavorId" class="delete-link">❌</a>
+    }
 </h1>
 
