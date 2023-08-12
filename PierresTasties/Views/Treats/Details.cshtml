@@ -13,8 +13,12 @@
         <a href="#" data-id="@Model.TreatId" data-url="/treats/delete/@Model.TreatId" class="delete-link">❌</a>
     }
 </h1>
-<img src="@Model.ImageURL" height="350px" />
-<h3 class="vote-count">🪙 @Model.Votes.Count</h3>
+
+<img src="@Model.ImageURL" height="350px" alt="A delicious @Model.Name"/>
+
+<div class="btn-container">
+    <button class="btn btn-success w-5 btn-block vote-count">🪙 @Model.Votes.Count</button>
+</div>
 
 <h2>Description: </h2>
 @if (Model.Description == null)
