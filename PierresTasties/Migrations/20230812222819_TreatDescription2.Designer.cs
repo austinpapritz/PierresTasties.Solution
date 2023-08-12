@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PierresTasties.Models;
 
@@ -10,9 +11,10 @@ using PierresTasties.Models;
 namespace PierresTasties.Migrations
 {
     [DbContext(typeof(PierresTastiesContext))]
-    partial class PierresTastiesContextModelSnapshot : ModelSnapshot
+    [Migration("20230812222819_TreatDescription2")]
+    partial class TreatDescription2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -250,9 +252,6 @@ namespace PierresTasties.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("ImageURL")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")

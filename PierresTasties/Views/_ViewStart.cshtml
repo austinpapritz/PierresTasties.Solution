@@ -2,7 +2,7 @@
     Layout = "_Layout";
 
     ////
-    // This allows every View to have elements that only an admin can see.
+    // This allows every view to have elements that only an admin can see.
     // See example below:
     //      @if ((bool)ViewData["IsAdmin"])
     //      {
@@ -21,6 +21,6 @@
             isAdmin = true;
         }
     }
-    // Make `isAdmin` available to all Views in the `ViewData`.
+    // Assign the value of `isAdmin` to `ViewData`, making it available to every view page.
     ViewData["IsAdmin"] = isAdmin;
 }

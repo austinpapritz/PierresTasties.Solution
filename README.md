@@ -1,6 +1,4 @@
-Add Patron class
-
-Patron
+User
     Many-to-many with Treat (via TastyToken entity)
     TokenCount = 3
 
@@ -10,11 +8,11 @@ TastyToken
     User can add token by redeeming a code
 
 Treat
-    Many-to-many with Patron (via TastyToken entity)
+    Many-to-many with User (via TastyToken entity)
     VoteCount = 0;
 
-Authorize Patron to Update treat vote-count (add or remove)
+Authorize User to Update treat vote-count (add or remove)
 Authorize Admin to create a token code
-Authorize Patron to create a token by redeeming a token code.
+Authorize User to create a token by redeeming a token code.
 
-Patron can create tokens (by redeeming it), user can add a vote token to a treat, or edit their vote token, see their votes in profile page
+User can create tokens (by redeeming it), user can add a vote token to a treat, or edit their vote token, see their votes in profile page

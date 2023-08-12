@@ -1,13 +1,30 @@
 @{
+    // TREATS DETAIL PAGE
     ViewData["Title"] = $"{@Model.Name} Details";
 }
 
 <h1>
-    Details for @Model.Name
+    @Model.Name 
+    
+
     @if ((bool)ViewData["IsAdmin"])
     {
         <a href="/treats/edit/@Model.TreatId">✏️</a>
         <a href="#" data-id="@Model.TreatId" data-url="/treats/delete/@Model.TreatId" class="delete-link">❌</a>
     }
 </h1>
+<img src="@Model.ImageURL" height="350px" />
+<h3 class="vote-count">🪙 @Model.Votes.Count</h3>
+
+<h2>Description: </h2>
+@if (Model.Description == null)
+{
+    <dd>This is a new hand-crafted tasty treat by Pierre.</dd>
+}
+else
+{
+    <dd>@Model.Description</dd>
+}
+
+
 

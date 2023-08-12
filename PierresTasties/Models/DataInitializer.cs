@@ -48,7 +48,12 @@ public class DataInitializer
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    var treat = new Treat { Name = treatNames[i * 4 + j] };
+                    var treat = new Treat
+                    {
+                        Name = treatNames[i * 4 + j],
+                        Description = "This is a tasty treat.",
+                        ImageURL = $"/{treatNames[i * 4 + j]}.jpg"
+                    };
                     var flavorTreat = new FlavorTreat { Flavor = flavors[i], Treat = treat };
                     context.FlavorTreats.Add(flavorTreat);
                 }

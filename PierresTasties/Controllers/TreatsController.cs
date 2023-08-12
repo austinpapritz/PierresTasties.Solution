@@ -22,7 +22,9 @@ public class TreatsController : Controller
 
     public IActionResult Details(int id)
     {
-        Treat model = _db.Treats.FirstOrDefault(t => t.TreatId == id);
+        Treat model = _db.Treats
+            .Include(t => t.Votes)
+            .FirstOrDefault(t => t.TreatId == id);
 
         if (model == null)
         {
