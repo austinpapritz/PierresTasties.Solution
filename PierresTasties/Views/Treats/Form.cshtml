@@ -32,18 +32,41 @@
     @* Flavor 1 *@
     <div class="form-group">
         <label for="flavorId1" class="control-label">Flavor 1: </label>
-        <select name="flavorId1" class ="form-control" asp-items="ViewBag.Flavors" required>
+        <select name="flavorId1" class="form-control" required>
             <option value="">-- Select Flavor --</option>
+            @foreach (var item in ViewBag.Flavors as SelectList)
+            {
+                if (item.Value == ViewBag.SelectedFlavor1.ToString())
+                {
+                    <option value="@item.Value" selected>@item.Text</option>
+                }
+                else
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            }
         </select>
     </div>
 
     @* Flavor 2 *@
     <div class="form-group">
         <label for="flavorId2" class="control-label">Flavor 2: </label>
-        <select name="flavorId2" class ="form-control" asp-items="ViewBag.Flavors">
+        <select name="flavorId2" class="form-control">
             <option value="">-- Select Flavor --</option>
+            @foreach (var item in ViewBag.Flavors as SelectList)
+            {
+                if (item.Value == ViewBag.SelectedFlavor2.ToString())
+                {
+                    <option value="@item.Value" selected>@item.Text</option>
+                }
+                else
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            }
         </select>
     </div>
+
 
     <div class="form-group">
         <input type="submit" value="@ViewData["SubmitButton"]" class="btn btn-primary" />

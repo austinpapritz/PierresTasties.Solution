@@ -81,14 +81,22 @@ public class TreatsController : Controller
     [Authorize(Roles = "Admin")]
     public IActionResult Edit(int id)
     {
-        Treat treatToBeEdited = _db.Treats.FirstOrDefault(t => t.TreatId == id);
+        Treat treatToBeEdited = _db.Treats
+            .Include(t => t.FlavorTreats)
+            .ThenInclude(ft => ft.Flavor)
+            .FirstOrDefault(t => t.TreatId == id);
 
         if (treatToBeEdited == null)
         {
             return NotFound();
         }
 
-        // Both Create and Edit routes use `Form.cshtml`.
+        List<int> selectedFlavorIds = treatToBeEdited.FlavorTreats.Select(ft => ft.FlavorId).ToList();
+
+        ViewBag.Flavors = new SelectList(_db.Flavors, "FlavorId", "Name");
+        ViewBag.SelectedFlavor1 = selectedFlavorIds.FirstOrDefault();
+        ViewBag.SelectedFlavor2 = selectedFlavorIds.Skip(1).FirstOrDefault();
+
         ViewData["FormAction"] = "Edit";
         ViewData["SubmitButton"] = "Update Treat";
 
@@ -98,7 +106,7 @@ public class TreatsController : Controller
     [Authorize(Roles = "Admin")]
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Edit(int id, [Bind("TreatId,Name,Description")] Treat treat)
+    public IActionResult Edit(int id, [Bind("TreatId,Name,Description")] Treat treat, int flavorId1, int? flavorId2)
     {
         // Ensure id from form and url match.
         if (id != treat.TreatId)
@@ -111,8 +119,27 @@ public class TreatsController : Controller
             // Try to update changes, catch any ConcurrencyExceptions.
             try
             {
+
+                // Remove existing `FlavorTreat` relationships for this treat.
+                var existingFlavorTreats = _db.FlavorTreats.Where(ft => ft.TreatId == treat.TreatId);
+                _db.FlavorTreats.RemoveRange(existingFlavorTreats);
+                _db.SaveChanges();
+
+                // Update the treat itself.
                 _db.Update(treat);
                 _db.SaveChanges();
+
+                // Update treat with new flavor(s);
+                FlavorTreat ft1 = new FlavorTreat() { FlavorId = flavorId1, TreatId = treat.TreatId };
+                _db.FlavorTreats.Add(ft1);
+                _db.SaveChanges();
+
+                if (flavorId2.HasValue)
+                {
+                    FlavorTreat ft2 = new FlavorTreat() { FlavorId = flavorId2.Value, TreatId = treat.TreatId };
+                    _db.FlavorTreats.Add(ft2);
+                    _db.SaveChanges();
+                }
             }
             catch (DbUpdateConcurrencyException)
             {
