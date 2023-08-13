@@ -34,7 +34,7 @@ body {
 }
 
 .Sharp {
-  background: yellow;
+  background: rgb(255, 234, 8);
 }
 
 .Savory {
@@ -53,6 +53,13 @@ body {
   text-decoration: none;
   color: white;
   font-size: 1.5em;
-  font-weight: 800;
+  font-weight: 700;
   text-transform: uppercase;
+}
+
+.btn:hover {
+  color: white;
+  opacity: 55%;
+  border-color: rgb(65, 65, 65);
+  font-weight: 999;
 }
