@@ -30,6 +30,12 @@ body {
   justify-content: flex-end;
 }
 
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .flavor-btn-container {
   display: flex;
 }
