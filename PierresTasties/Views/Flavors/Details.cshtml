@@ -4,7 +4,7 @@
 }
 
 <h1>
-    Details for @Model.Name
+    @Model.Name Treats
     
     @* Only display these if user is an admin *@
     @if ((bool)ViewData["IsAdmin"])
@@ -14,4 +14,13 @@
     }
 </h1>
 
-
+<ul>
+    @foreach(FlavorTreat flavorTreat in Model.FlavorTreats)
+    {
+        <li>
+            <a href="/treats/details/@flavorTreat.Treat.TreatId">
+                @flavorTreat.Treat.Name
+            </a>
+        </li>
+    }
+</ul>

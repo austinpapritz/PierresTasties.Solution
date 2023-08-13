@@ -22,7 +22,10 @@ public class FlavorsController : Controller
 
     public IActionResult Details(int id)
     {
-        Flavor model = _db.Flavors.FirstOrDefault(f => f.FlavorId == id);
+        Flavor model = _db.Flavors
+            .Include(f => f.FlavorTreats)
+            .ThenInclude(ft => ft.Treat)
+            .FirstOrDefault(f => f.FlavorId == id);
 
         if (model == null)
         {
