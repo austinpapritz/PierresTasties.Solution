@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PierresTasties.Models;
@@ -39,6 +40,8 @@ public class TreatsController : Controller
     [Authorize(Roles = "Admin")]
     public IActionResult Create()
     {
+        ViewBag.Flavors = new SelectList(_db.Flavors, "FlavorId", "Name");
+
         // Both Create and Edit routes use `Form.cshtml`
         ViewData["FormAction"] = "Create";
         ViewData["SubmitButton"] = "Add Treat";
@@ -48,15 +51,28 @@ public class TreatsController : Controller
     [Authorize(Roles = "Admin")]
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Create([Bind("Name")] Treat Treat)
+    public IActionResult Create([Bind("Name,Description")] Treat treat, int flavorId1, int? flavorId2)
     {
         if (ModelState.IsValid)
         {
-            _db.Treats.Add(Treat);
+            _db.Treats.Add(treat);
             _db.SaveChanges();
+
+            FlavorTreat ft1 = new FlavorTreat() { FlavorId = flavorId1, TreatId = treat.TreatId };
+            _db.FlavorTreats.Add(ft1);
+            _db.SaveChanges();
+
+            if (flavorId2.HasValue)
+            {
+                FlavorTreat ft2 = new FlavorTreat() { FlavorId = flavorId2.Value, TreatId = treat.TreatId };
+                _db.FlavorTreats.Add(ft2);
+                _db.SaveChanges();
+            }
 
             return RedirectToAction("Index");
         }
+
+        ViewBag.Flavors = new SelectList(_db.Flavors, "FlavorId", "Name");
         ViewData["FormAction"] = "Create";
         ViewData["SubmitButton"] = "Add Treat";
         return View("Form");
@@ -82,7 +98,7 @@ public class TreatsController : Controller
     [Authorize(Roles = "Admin")]
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Edit(int id, [Bind("TreatId,Name")] Treat treat)
+    public IActionResult Edit(int id, [Bind("TreatId,Name,Description")] Treat treat)
     {
         // Ensure id from form and url match.
         if (id != treat.TreatId)

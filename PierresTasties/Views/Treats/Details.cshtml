@@ -25,7 +25,7 @@
 </h1>
 
 @* Image of treat. *@
-<img src="@Model.ImageURL" height="350px" alt="A delicious @Model.Name"/>
+<img src="@($"/{Model.Name}.jpg")" height="350px" alt="Photo of a delicious @Model.Name"/>
 
 @* Vote button. *@
 <div class="btn-container">

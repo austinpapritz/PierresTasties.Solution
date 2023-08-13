@@ -63,7 +63,6 @@ public class DataInitializer
                 {
                     Name = treatCombination.Name,
                     Description = "This is a tasty treat.",
-                    ImageURL = $"/{treatCombination.Name}.jpg"
                 };
                 context.Treats.Add(treat);
                 context.SaveChanges();
