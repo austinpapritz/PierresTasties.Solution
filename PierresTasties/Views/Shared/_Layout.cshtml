@@ -65,7 +65,7 @@
                     &copy; 2023 - Pierre's Tasties - Designed by <a href="https://www.linkedin.com/in/austinpapritz">Austin Papritz</a>
                 </div>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    @if((bool)ViewData["isAdmin"])
+                    @if(ViewBag.isAdmin)
                     {
                         <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                             <ul class="navbar-nav flex-grow-1 site-nav">

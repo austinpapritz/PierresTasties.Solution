@@ -16,7 +16,7 @@
                 @treat.Name
                 <a href="/treats/details/@treat.TreatId">🔎</a>
                 
-                @if ((bool)ViewData["IsAdmin"])
+                @if (ViewBag.isAdmin)
                 {
                     <a href="/treats/edit/@treat.TreatId">✏️</a>
                     <a href="#" data-id="@treat.TreatId" data-url="/treats/delete/@treat.TreatId" class="delete-link">❌</a>

@@ -7,7 +7,7 @@
     @Model.Name Treats
     
     @* Only display these if user is an admin *@
-    @if ((bool)ViewData["IsAdmin"])
+    @if (ViewBag.isAdmin)
     {
         <a href="/flavors/edit/@Model.FlavorId">✏️</a>
         <a href="#" data-id="@Model.FlavorId" data-url="/flavors/delete/@Model.FlavorId" class="delete-link">❌</a>

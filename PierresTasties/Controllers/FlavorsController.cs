@@ -39,8 +39,8 @@ public class FlavorsController : Controller
     public IActionResult Create()
     {
         // Both Create and Edit routes use `Form.cshtml`
-        ViewData["FormAction"] = "Create";
-        ViewData["SubmitButton"] = "Add Flavor";
+        ViewBag.FormAction = "Create";
+        ViewBag.SubmitButton = "Add Flavor";
         return View("Form");
     }
 
@@ -56,8 +56,8 @@ public class FlavorsController : Controller
 
             return RedirectToAction("Index");
         }
-        ViewData["FormAction"] = "Create";
-        ViewData["SubmitButton"] = "Add Flavor";
+        ViewBag.FormAction = "Create";
+        ViewBag.SubmitButton = "Add Flavor";
         return View("Form");
     }
 
@@ -72,8 +72,8 @@ public class FlavorsController : Controller
         }
 
         // Both Create and Edit routes use `Form.cshtml`.
-        ViewData["FormAction"] = "Edit";
-        ViewData["SubmitButton"] = "Update Flavor";
+        ViewBag.FormAction = "Edit";
+        ViewBag.SubmitButton = "Update Flavor";
 
         return View("Form", flavorToBeEdited);
     }
@@ -112,8 +112,8 @@ public class FlavorsController : Controller
         }
 
         // Otherwise reload form.
-        ViewData["FormAction"] = "Edit";
-        ViewData["SubmitButton"] = "Update Flavor";
+        ViewBag.FormAction = "Edit";
+        ViewBag.SubmitButton = "Update Flavor";
         return RedirectToAction("edit", new { id = flavor.FlavorId });
     }
 

@@ -43,8 +43,8 @@ public class TreatsController : Controller
         ViewBag.Flavors = new SelectList(_db.Flavors, "FlavorId", "Name");
 
         // Both Create and Edit routes use `Form.cshtml`
-        ViewData["FormAction"] = "Create";
-        ViewData["SubmitButton"] = "Add Treat";
+        ViewBag.FormAction = "Create";
+        ViewBag.SubmitButton = "Add Treat";
         return View("Form");
     }
 
@@ -73,8 +73,8 @@ public class TreatsController : Controller
         }
 
         ViewBag.Flavors = new SelectList(_db.Flavors, "FlavorId", "Name");
-        ViewData["FormAction"] = "Create";
-        ViewData["SubmitButton"] = "Add Treat";
+        ViewBag.FormAction = "Create";
+        ViewBag.SubmitButton = "Add Treat";
         return View("Form");
     }
 
@@ -97,8 +97,8 @@ public class TreatsController : Controller
         ViewBag.SelectedFlavor1 = selectedFlavorIds.FirstOrDefault();
         ViewBag.SelectedFlavor2 = selectedFlavorIds.Skip(1).FirstOrDefault();
 
-        ViewData["FormAction"] = "Edit";
-        ViewData["SubmitButton"] = "Update Treat";
+        ViewBag.FormAction = "Edit";
+        ViewBag.SubmitButton = "Update Treat";
 
         return View("Form", treatToBeEdited);
     }
@@ -156,8 +156,8 @@ public class TreatsController : Controller
         }
 
         // Otherwise reload form.
-        ViewData["FormAction"] = "Edit";
-        ViewData["SubmitButton"] = "Update Treat";
+        ViewBag.FormAction = "Edit";
+        ViewBag.SubmitButton = "Update Treat";
         return RedirectToAction("edit", new { id = treat.TreatId });
     }
 

@@ -4,7 +4,7 @@
     ////
     // This allows every view to have elements that only an admin can see.
     // See example below:
-    //      @if ((bool)ViewData["IsAdmin"])
+    //      @if (ViewBag.isAdmin)
     //      {
     //          <p>Only an admin can see this element.</p>
     //      }
@@ -21,6 +21,6 @@
             isAdmin = true;
         }
     }
-    // Assign the value of `isAdmin` to `ViewData`, making it available to every view page.
-    ViewData["IsAdmin"] = isAdmin;
+    // Assign the value of `isAdmin` to `ViewBag.isAdmin`, making it available to every view page.
+    ViewBag.isAdmin = isAdmin;
 }
