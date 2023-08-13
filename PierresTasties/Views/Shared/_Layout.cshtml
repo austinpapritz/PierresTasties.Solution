@@ -30,7 +30,7 @@
                         {
                             var email = User.FindFirstValue(ClaimTypes.Email);
                             <li class="nav-item">
-                                <p class="nav-link text-dark">@email || </p>
+                                <a class="nav-link text-dark">@email || </a>
                             </li>
                             <li class="nav-item">
                                 <form asp-controller="Account" asp-action="LogOff" method="post" style="display: inline;">
