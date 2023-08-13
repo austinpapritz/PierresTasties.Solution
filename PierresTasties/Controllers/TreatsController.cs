@@ -24,6 +24,8 @@ public class TreatsController : Controller
     {
         Treat model = _db.Treats
             .Include(t => t.Votes)
+            .Include(t => t.FlavorTreats)
+            .ThenInclude(fl => fl.Flavor)
             .FirstOrDefault(t => t.TreatId == id);
 
         if (model == null)

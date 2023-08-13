@@ -25,6 +25,7 @@ public class DataInitializer
             var flavors = new List<Flavor>
                 {
                     new Flavor { Name = "Sweet" },
+                    new Flavor { Name = "Tart" },
                     new Flavor { Name = "Savory" },
                     new Flavor { Name = "Creamy" },
                     new Flavor { Name = "Spicy" }
@@ -34,34 +35,57 @@ public class DataInitializer
             context.Flavors.AddRange(flavors);
             context.SaveChanges();
 
-            // Define Treats with combinations of flavors
-            var treatNames = new List<string>
+            // Create a list of treats for every flavor combo.
+            var treatCombinations = new List<(string Name, string Flavor1, string Flavor2)>
                 {
-                    "Sweet Raspberry Tart", "Sweet Lemon Cookies", "Sweet Almond Cake", "Sweet Chocolate Muffins",
-                    "Savory Cheese Croissant", "Savory Olive Bread", "Savory Tomato Quiche", "Savory Bacon Scones",
-                    "Creamy Vanilla Eclairs", "Creamy Coffee Tiramisu", "Creamy Strawberry Cheesecake", "Creamy Pistachio Mousse",
-                    "Spicy Ginger Cookies", "Spicy Chili Brownies", "Spicy Cinnamon Rolls", "Spicy Cayenne Chocolate Cake"
+                    ("Sugar Cookie", "Sweet", null),
+                    ("Lemon Meringue Pie", "Sweet", "Tart"),
+                    ("Bacon Scones", "Sweet", "Savory"),
+                    ("Strawberry Cheesecake", "Sweet", "Creamy"),
+                    ("Ginger Cookies", "Sweet", "Spicy"),
+                    ("Raspberry Tart", "Tart", null),
+                    ("Quiche Lorraine", "Tart", "Savory"),
+                    ("Lemon Cream Tart", "Tart", "Creamy"),
+                    ("Orange Jalapeño Monkey Bread", "Tart", "Spicy"),
+                    ("Black Truffle Olive Bread", "Savory", null),
+                    ("Cheesy Croissant", "Savory", "Creamy"),
+                    ("Cayenne Tomato Quiche", "Savory", "Spicy"),
+                    ("Vanilla Eclairs", "Creamy", null),
+                    ("Mayan Chocolate Truffle", "Creamy", "Spicy"),
+                    ("Habanero Potato Empanada", "Spicy", null)
                 };
 
-            // Create FlavorTreat relationships
-            for (int i = 0; i < flavors.Count; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                {
-                    var treat = new Treat
-                    {
-                        Name = treatNames[i * 4 + j],
-                        Description = "This is a tasty treat.",
-                        ImageURL = $"/{treatNames[i * 4 + j]}.jpg"
-                    };
-                    var flavorTreat = new FlavorTreat { Flavor = flavors[i], Treat = treat };
-                    context.FlavorTreats.Add(flavorTreat);
-                }
-            }
 
-            // Save changes to the database
-            context.SaveChanges();
+            foreach (var treatCombination in treatCombinations)
+            {
+                // Make a Treat object for every treat in the list.
+                var treat = new Treat
+                {
+                    Name = treatCombination.Name,
+                    Description = "This is a tasty treat.",
+                    ImageURL = $"/{treatCombination.Name}.jpg"
+                };
+                context.Treats.Add(treat);
+                context.SaveChanges();
+
+                // Use Flavor1 and Flavor2 strings to get Flavor entity from db.
+                var flavor1 = flavors.FirstOrDefault(f => f.Name == treatCombination.Flavor1);
+                var flavor2 = flavors.FirstOrDefault(f => f.Name == treatCombination.Flavor2);
+
+                // Match treat and flavor via `FlavorTreat` entity.
+                var flavorTreat1 = new FlavorTreat { Flavor = flavor1, Treat = treat };
+                context.FlavorTreats.Add(flavorTreat1);
+
+                // If treat has a second flavor, then create another `FlavorTreat`.
+                if (flavor2 != null)
+                {
+                    var flavorTreat2 = new FlavorTreat { Flavor = flavor2, Treat = treat };
+                    context.FlavorTreats.Add(flavorTreat2);
+                }
+
+                // Save changes to the database
+                context.SaveChanges();
+            }
         }
     }
-
 }

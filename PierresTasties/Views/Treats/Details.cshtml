@@ -3,6 +3,14 @@
     ViewData["Title"] = $"{@Model.Name} Details";
 }
 
+<p>Count: @Model.FlavorTreats.Count</p>
+<div class="flavor-btns">
+    @foreach(FlavorTreat flavorTreat in Model.FlavorTreats)
+    {
+        <button class="btn w-50 btn-block @flavorTreat.Flavor.Name">@flavorTreat.Flavor.Name</button>
+    }
+</div>
+
 <h1>
     @Model.Name 
     
