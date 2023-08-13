@@ -35,19 +35,19 @@
         <select name="flavorId1" class="form-control" required>
             <option value="">-- Select Flavor --</option>
             @* Loop thru `Flavors` to populate dropdown menu. *@
-            @foreach (var item in ViewBag.Flavors as SelectList)
+            @foreach (var flavorOption in ViewBag.Flavors as SelectList)
             {
                 // If this form is for `Create`, then `SelectedFlavor1` will be null.
                 // If this form is for `Edit`, then one of the flavors will match `SelectedFlavor1`
-                if (ViewBag.SelectedFlavor1 != null && item.Value == ViewBag.SelectedFlavor1.ToString())
+                if (ViewBag.SelectedFlavor1 != null && flavorOption.Value == ViewBag.SelectedFlavor1.ToString())
                 {
                     // This will pre-select the treat's 1st flavor, if this form is for `Edit`.
-                    <option value="@item.Value" selected>@item.Text</option>
+                    <option value="@flavorOption.Value" selected>@flavorOption.Text</option>
                 }
                 else
                 {
                     // In any other case, just create a regular option with the flavor's name and value.
-                    <option value="@item.Value">@item.Text</option>
+                    <option value="@flavorOption.Value">@flavorOption.Text</option>
                 }
             }
         </select>
@@ -59,19 +59,19 @@
         <select name="flavorId2" class="form-control">
             <option value="">-- Select Flavor --</option>
             @* Loop thru `Flavors` to populate dropdown menu. *@
-            @foreach (var item in ViewBag.Flavors as SelectList)
+            @foreach (var flavorOption in ViewBag.Flavors as SelectList)
             {
                 // If this form is for `Create`, then `SelectedFlavor1` will be null.
                 // Even if this form is for `Edit`, some treats do not have a 2nd flavor. 
-                if (ViewBag.SelectedFlavor2 != null && item.Value == ViewBag.SelectedFlavor2.ToString())
+                if (ViewBag.SelectedFlavor2 != null && flavorOption.Value == ViewBag.SelectedFlavor2.ToString())
                 {
                     // Assuming `Edit` and treat has a 2nd flavor, pre-select it in the dropdown.
-                    <option value="@item.Value" selected>@item.Text</option>
+                    <option value="@flavorOption.Value" selected>@flavorOption.Text</option>
                 }
                 else
                 {
                     // In any other case, just create a regular option with the flavor's name and value.
-                    <option value="@item.Value">@item.Text</option>
+                    <option value="@flavorOption.Value">@flavorOption.Text</option>
                 }
             }
         </select>

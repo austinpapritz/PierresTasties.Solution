@@ -62,7 +62,7 @@ public class TreatsController : Controller
             _db.FlavorTreats.Add(ft1);
             _db.SaveChanges();
 
-            if (flavorId2.HasValue)
+            if (flavorId2.HasValue && flavorId2 != flavorId1)
             {
                 FlavorTreat ft2 = new FlavorTreat() { FlavorId = flavorId2.Value, TreatId = treat.TreatId };
                 _db.FlavorTreats.Add(ft2);
@@ -134,7 +134,7 @@ public class TreatsController : Controller
                 _db.FlavorTreats.Add(ft1);
                 _db.SaveChanges();
 
-                if (flavorId2.HasValue)
+                if (flavorId2.HasValue && flavorId2 != flavorId1)
                 {
                     FlavorTreat ft2 = new FlavorTreat() { FlavorId = flavorId2.Value, TreatId = treat.TreatId };
                     _db.FlavorTreats.Add(ft2);

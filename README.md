@@ -63,6 +63,7 @@ _Pierre's Tasties is a web app that allows users to see what new treats and flav
 ## Known Bugs
 
 * _New Flavors need to have styling added for Treat detail pages to display correctly._
+* _Error when a new treat is given two of the same flavors._
 
 ## License
 
