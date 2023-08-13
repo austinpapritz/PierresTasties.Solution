@@ -36,7 +36,7 @@
             <option value="">-- Select Flavor --</option>
             @foreach (var item in ViewBag.Flavors as SelectList)
             {
-                if (item.Value == ViewBag.SelectedFlavor1.ToString())
+                if (ViewBag.SelectedFlavor1 != null && item.Value == ViewBag.SelectedFlavor1.ToString())
                 {
                     <option value="@item.Value" selected>@item.Text</option>
                 }
@@ -55,7 +55,7 @@
             <option value="">-- Select Flavor --</option>
             @foreach (var item in ViewBag.Flavors as SelectList)
             {
-                if (item.Value == ViewBag.SelectedFlavor2.ToString())
+                if (ViewBag.SelectedFlavor2 != null && item.Value == ViewBag.SelectedFlavor2.ToString())
                 {
                     <option value="@item.Value" selected>@item.Text</option>
                 }
