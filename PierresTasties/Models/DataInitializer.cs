@@ -25,7 +25,7 @@ public class DataInitializer
             var flavors = new List<Flavor>
                 {
                     new Flavor { Name = "Sweet" },
-                    new Flavor { Name = "Tart" },
+                    new Flavor { Name = "Sharp" },
                     new Flavor { Name = "Savory" },
                     new Flavor { Name = "Creamy" },
                     new Flavor { Name = "Spicy" }
@@ -39,14 +39,14 @@ public class DataInitializer
             var treatCombinations = new List<(string Name, string Flavor1, string Flavor2)>
                 {
                     ("Sugar Cookie", "Sweet", null),
-                    ("Lemon Meringue Pie", "Sweet", "Tart"),
+                    ("Lemon Meringue Pie", "Sweet", "Sharp"),
                     ("Bacon Scones", "Sweet", "Savory"),
                     ("Strawberry Cheesecake", "Sweet", "Creamy"),
                     ("Ginger Cookies", "Sweet", "Spicy"),
-                    ("Raspberry Tart", "Tart", null),
-                    ("Quiche Lorraine", "Tart", "Savory"),
-                    ("Lemon Cream Tart", "Tart", "Creamy"),
-                    ("Orange Jalapeño Monkey Bread", "Tart", "Spicy"),
+                    ("Raspberry Tart", "Sharp", null),
+                    ("Sharp Cheddar Sourdough Bread", "Sharp", "Savory"),
+                    ("Lemon Cream Tart", "Sharp", "Creamy"),
+                    ("Orange Jalapeño Monkey Bread", "Sharp", "Spicy"),
                     ("Black Truffle Olive Bread", "Savory", null),
                     ("Cheesy Croissant", "Savory", "Creamy"),
                     ("Cayenne Tomato Quiche", "Savory", "Spicy"),

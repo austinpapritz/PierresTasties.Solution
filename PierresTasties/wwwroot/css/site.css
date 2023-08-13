@@ -24,3 +24,35 @@ body {
 .form-group .btn {
   margin-top: 5px;
 }
+
+.flavor-btn-container {
+  display: flex;
+}
+
+.Sweet {
+  background: rgb(234, 152, 166);
+}
+
+.Sharp {
+  background: yellow;
+}
+
+.Savory {
+  background: rgb(125, 99, 66);
+}
+
+.Creamy {
+  background: rgb(240, 130, 90);
+}
+
+.Spicy {
+  background: rgb(211, 35, 35);
+}
+
+.flavor-link {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5em;
+  font-weight: 800;
+  text-transform: uppercase;
+}
