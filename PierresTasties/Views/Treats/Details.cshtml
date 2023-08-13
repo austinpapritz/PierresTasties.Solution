@@ -6,8 +6,11 @@
 <div class="flavor-btn-container">
     @foreach(FlavorTreat flavorTreat in Model.FlavorTreats)
     {
-        <a href="/flavors/details/@flavorTreat.Flavor.FlavorId" 
-        class="btn w-50 flavor-link @flavorTreat.Flavor.Name">
+        <a 
+            href="/flavors/details/@flavorTreat.Flavor.FlavorId" 
+            class="btn w-50 flavor-link @flavorTreat.Flavor.Name"
+            title="See All @flavorTreat.Flavor.Name Treats"
+        >
                 @flavorTreat.Flavor.Name
         </a>
     }
@@ -19,8 +22,13 @@
 
     @if (ViewBag.isAdmin)
     {
-        <a href="/treats/edit/@Model.TreatId">✏️</a>
-        <a href="#" data-id="@Model.TreatId" data-url="/treats/delete/@Model.TreatId" class="delete-link">❌</a>
+        <a href="/treats/edit/@Model.TreatId" title="Edit">✏️</a>
+        <a href="#" 
+            data-id="@Model.TreatId" 
+            data-url="/treats/delete/@Model.TreatId" 
+            class="delete-link" 
+            title="Delete"
+        >❌</a>
     }
 </h1>
 
@@ -29,7 +37,12 @@
 
 @* Vote button. *@
 <div class="btn-container">
-    <button class="btn btn-success w-5 btn-block vote-count">🪙 @Model.Votes.Count</button>
+    <button 
+        class="btn btn-success w-5 btn-block vote-count" 
+        title="Use a Tasty Token"
+    > 
+        🪙 @Model.Votes.Count
+    </button>
 </div>
 
 @* Treat description. *@

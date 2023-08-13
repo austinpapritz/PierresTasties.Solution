@@ -9,8 +9,14 @@
     @* Only display these if user is an admin *@
     @if (ViewBag.isAdmin)
     {
-        <a href="/flavors/edit/@Model.FlavorId">✏️</a>
-        <a href="#" data-id="@Model.FlavorId" data-url="/flavors/delete/@Model.FlavorId" class="delete-link">❌</a>
+        <a href="/flavors/edit/@Model.FlavorId" title="Edit">✏️</a>
+        <a 
+            href="#" 
+            data-id="@Model.FlavorId" 
+            data-url="/flavors/delete/@Model.FlavorId" 
+            class="delete-link"
+            title="Delete"
+        >❌</a>
     }
 </h1>
 
