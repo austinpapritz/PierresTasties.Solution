@@ -66,6 +66,8 @@ _Pierre's Tasties is a web app that allows users to see what new treats and flav
 
 ## License
 
+_favicon downloaded from https://www.flaticon.com_
+
 _This app is not licensed and is free to use and distribute._
 
 _If you run in to any problems or have any suggestions, feel free to contact me on [linkedIn](https://www.linkedin.com/in/austin-papritz)!_
