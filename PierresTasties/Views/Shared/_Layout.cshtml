@@ -33,18 +33,22 @@
                         @if (User.Identity.IsAuthenticated) 
                         {
                             var email = User.FindFirstValue(ClaimTypes.Email);
-                            <li class="nav-item"><p class="nav-link text-dark">@email</p></li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Log Out</a>
+                                <p class="nav-link text-dark">@email</p>
+                            </li>
+                            <li class="nav-item">
+                                <form asp-controller="Account" asp-action="LogOff" method="post" style="display: inline;">
+                                    <button type="submit" class="btn btn-link nav-link text-dark">Log Out</button>
+                                </form>
                             </li>
                         } 
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Sign up</a>
+                                <a class="btn btn-link nav-link text-dark" asp-controller="Account" asp-action="Register">Sign up</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Log in</a>
+                                <a class="btn btn-link nav-link text-dark" asp-controller="Account" asp-action="Login">Log in</a>
                             </li>
                         }
                     </ul>
@@ -71,10 +75,10 @@
                             <ul class="navbar-nav flex-grow-1 site-nav">
                                 <li class="nav-link text-dark">Admin Navigation: </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-controller="Flavors" asp-action="Create">New Flavor</a>
+                                    <a class="btn btn-link nav-link text-dark" asp-controller="Flavors" asp-action="Create">New Flavor</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-controller="Treats" asp-action="Create">New Treat</a>
+                                    <a class="btn btn-link nav-link text-dark" asp-controller="Treats" asp-action="Create">New Treat</a>
                                 </li>
                             </ul>
                         </div>
