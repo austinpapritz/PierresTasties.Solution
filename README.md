@@ -4,6 +4,8 @@
 
 #### _This web application serves to organize Pierre's Bakery new tasty treats and flavors!_
 
+![Screenshot of Ginger Cookies detail page.](/PierresTasties/wwwroot/tasties_ss.png)
+
 ## Technologies Used
 
 * _C#_
