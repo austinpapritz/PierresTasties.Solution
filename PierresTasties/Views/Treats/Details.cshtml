@@ -24,13 +24,15 @@
     }
 </h1>
 
+@* Image of treat. *@
 <img src="@Model.ImageURL" height="350px" alt="A delicious @Model.Name"/>
 
+@* Vote button. *@
 <div class="btn-container">
     <button class="btn btn-success w-5 btn-block vote-count">🪙 @Model.Votes.Count</button>
 </div>
 
-<h2>Description: </h2>
+@* Treat description. *@
 @if (Model.Description == null)
 {
     <dd>This is a new hand-crafted tasty treat by Pierre.</dd>

@@ -1,3 +1,5 @@
+Add Description and Flavors to Treat form.
+
 User
     Many-to-many with Treat (via TastyToken entity)
     TokenCount = 3

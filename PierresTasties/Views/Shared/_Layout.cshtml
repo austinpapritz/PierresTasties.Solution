@@ -26,26 +26,7 @@
                             <a class="nav-link text-dark" asp-controller="Flavors" asp-action="Index">Flavor List</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Flavors" asp-action="Details" asp-route-id="1">Flavor 1 Details</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Flavors" asp-action="Create">New Flavor</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Flavors" asp-action="Edit" asp-route-id="1">Flavor 1 Edit</a>
-                        </li>
-                        <li class="nav-item"><p class="nav-link text-dark">||</p></li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Treats" asp-action="Index">Treat List</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Treats" asp-action="Details" asp-route-id="1">Treat 1 Details</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Treats" asp-action="Create">New Treat</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Treats" asp-action="Edit" asp-route-id="1">Treat 1 Edit</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav flex-grow-1 user-nav">
@@ -66,7 +47,6 @@
                                 <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Log in</a>
                             </li>
                         }
-
                     </ul>
                 </div>
             </div>
@@ -78,10 +58,30 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Pierre's Tasties - Designed by <a href="https://www.linkedin.com/in/austinpapritz">Austin Papritz</a>
-        </div>
+    <footer class="border-top footer text-muted">      
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <div class="container">
+                    &copy; 2023 - Pierre's Tasties - Designed by <a href="https://www.linkedin.com/in/austinpapritz">Austin Papritz</a>
+                </div>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    @if((bool)ViewData["isAdmin"])
+                    {
+                        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                            <ul class="navbar-nav flex-grow-1 site-nav">
+                                <li class="nav-link text-dark">Admin Navigation: </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Flavors" asp-action="Create">New Flavor</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Treats" asp-action="Create">New Treat</a>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                </div>
+            </div>
+        </nav>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

@@ -25,6 +25,11 @@ body {
   margin-top: 5px;
 }
 
+.user-nav {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .flavor-btn-container {
   display: flex;
 }
